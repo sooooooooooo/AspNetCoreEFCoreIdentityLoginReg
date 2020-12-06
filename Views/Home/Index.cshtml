@@ -1,8 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model LoginRegWithIdentity.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Register</h1>
+    <p>Already registered? Click <a href="/login">here</a> to signin.</p>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <form asp-action="Register" asp-controller="Home" method="POST">
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control">
+                    <small class="form-text text-muted">Password must have a minimum length of 8, at least one uppercase letter, at least one lowercase letter, at least one number, at least one special character.</small>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
 </div>
