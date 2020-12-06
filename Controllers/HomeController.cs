@@ -59,9 +59,23 @@ namespace LoginRegWithIdentity.Controllers
         }
 
         [HttpGet("dashboard")]
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            return View();
+            User CurrentUser = await GetCurrentUserAsync();
+            return View(CurrentUser);
+        }
+
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index");
+        }
+
+        private Task<User> GetCurrentUserAsync()
+        {
+            // We have global access to HttpContext.User which will give us the ClaimsPrincipal of the currently logged in user, an object that contains the identity and security privileges of the user.
+            return _userManager.GetUserAsync(HttpContext.User);
         }
 
         public IActionResult Privacy()
