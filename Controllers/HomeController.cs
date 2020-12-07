@@ -50,6 +50,7 @@ namespace LoginRegWithIdentity.Controllers
                     return RedirectToAction("Dashboard");
                 }
                 // If the creation failed, add the errors to the View Model
+                // string errors = String.Empty;
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -58,10 +59,40 @@ namespace LoginRegWithIdentity.Controllers
             return View("Index");
         }
 
+        [HttpGet("login")]
+        public IActionResult LoginForm()
+        {
+            return View();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(viewModel.UserNameLogin, viewModel.PasswordLogin, isPersistent: false, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+                    return RedirectToAction("Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                }
+            }
+            return View("LoginForm");
+        }
+
         [HttpGet("dashboard")]
         public async Task<IActionResult> Dashboard()
         {
             User CurrentUser = await GetCurrentUserAsync();
+            if (CurrentUser == null)
+            {
+                TempData["NotYetLoginOrRegister"] = "Please login or register to access the app.";
+                return RedirectToAction("LoginForm");
+            }
             return View(CurrentUser);
         }
 

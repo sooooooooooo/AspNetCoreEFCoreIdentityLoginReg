@@ -14397,6 +14397,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/Views/Home/LoginForm.cshtml",
+      "TargetPath": "Views\\Home\\LoginForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"

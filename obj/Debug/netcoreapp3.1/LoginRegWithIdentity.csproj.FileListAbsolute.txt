@@ -63,3 +63,4 @@
 /Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/obj/Debug/netcoreapp3.1/LoginRegWithIdentity.pdb
 /Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/obj/Debug/netcoreapp3.1/LoginRegWithIdentity.genruntimeconfig.cache
 /Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/obj/Debug/netcoreapp3.1/Razor/Views/Home/Dashboard.cshtml.g.cs
+/Users/sooooooooooo/Documents/CD/c#_.net_core_stack/orms/entity_framework/LoginRegWithIdentity/obj/Debug/netcoreapp3.1/Razor/Views/Home/LoginForm.cshtml.g.cs
