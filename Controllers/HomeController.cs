@@ -88,7 +88,15 @@ namespace LoginRegWithIdentity.Controllers
         public async Task<IActionResult> Dashboard()
         {
             User CurrentUser = await GetCurrentUserAsync();
-            if (CurrentUser == null)
+            // if (CurrentUser == null)
+            // {
+            //     TempData["NotYetLoginOrRegister"] = "Please login or register to access the app.";
+            //     return RedirectToAction("LoginForm");
+            // }
+
+            // You don't need to use the SigninManager or something similar. The user is injected on the pipeline (on the User property of the base controller) and it's info is filled automatically by the authentication middleware (cookie or token). So, on your controller:
+            bool isAuthenticated = User.Identity.IsAuthenticated;
+            if (!isAuthenticated)
             {
                 TempData["NotYetLoginOrRegister"] = "Please login or register to access the app.";
                 return RedirectToAction("LoginForm");
@@ -103,6 +111,8 @@ namespace LoginRegWithIdentity.Controllers
             return RedirectToAction("Index");
         }
 
+        // One operation we often want to perform multiple times in our code is fetching the user that's currently logged in.
+        // Because we know we'll be doing this a lot it's a good idea to pull it out into a little helper function.
         private Task<User> GetCurrentUserAsync()
         {
             // We have global access to HttpContext.User which will give us the ClaimsPrincipal of the currently logged in user, an object that contains the identity and security privileges of the user.
